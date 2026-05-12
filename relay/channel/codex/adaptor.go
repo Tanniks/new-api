@@ -99,6 +99,8 @@ func (a *Adaptor) ConvertOpenAIResponsesRequest(c *gin.Context, info *relaycommo
 	if isCompact {
 		return request, nil
 	}
+	// Codex backend requires store to be explicitly false.
+	request.Store = json.RawMessage("false")
 	// rm max_output_tokens
 	request.MaxOutputTokens = nil
 	request.Temperature = nil
